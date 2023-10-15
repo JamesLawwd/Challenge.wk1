@@ -1,38 +1,29 @@
-let prompt = require('prompt-sync')();
-//
-// get input from the user.
-//
-let input = prompt('Enter Speed ');
-
-let checkSpeed = parseFloat(input)
-
-
-const speedLimit = 70;
-const demeritPointsPerKmOverSpeedLimit = 1;
-
-function detectSpeed(speed) {
-    if (speed <= speedLimit) {
-        return 0;
-    }
-
-    const kmOverSpeedLimit = speed - speedLimit;
-    const demeritPoints = Math.floor(kmOverSpeedLimit / 5);
-    return demeritPoints;
-}
-
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-readline.question('Enter the car speed (km/h): ', (speed) => {
-    const demeritPoints = detectSpeed(parseInt(speed));
-    if (demeritPoints > 12) {
-        console.log('License suspended');
+//Import the 'prompt-sync' module to get the user input
+const prompt = require('prompt-sync')();
+//Convert the entered their speed
+const input = prompt ('Enter speed')
+//Convert the entered speed to a floating-point number
+const enteredspeed= parseFloat(input)
+//Define the speed limit
+const limit = 70
+//Define a function to check the speed and calculate points
+function  checkSpeed(speed) {
+    if (speed < 70) {
+      // If the speed is less than the limit, return "Ok"
+       return "Ok";
     } else {
-        console.log(`Points: ${demeritPoints}`);
+      // Calculate points for exceeding the limit
+       let points = Math.floor((speed - 70) / 5);
+       if (points > 12) {
+        // If points exceed 12, return "License suspended"
+         return "License suspended";
+       } else {
+        // If points are within the acceptable range, return the number of points
+         return `Points: ${points}`;
+       
+
+       }
     }
-    readline.close();
-});
-
-
+   }
+   // Call the checkSpeed function with the entered speed and print the result
+   console.log (checkSpeed(input))

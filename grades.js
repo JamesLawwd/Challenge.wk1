@@ -1,38 +1,23 @@
- 
-let prompt = require('prompt-sync')();
+// Import the 'prompt-sync' module to get user input
+const prompt = require ('prompt-sync')();
+// Prompt the user to enter their marks
+const input = prompt ('Enter marks')
+// Convert the entered marks to a floating-point number
+const enteredmarks= parseFloat (input)
 
-// get input from the user.
-
-function generateStudentGrade(marks) {
-    if (marks > 79) {
-        return 'A';
-        
-    } else if (marks >= 60 && marks <= 79) {
-        return 'B';
-        
-    } else if (marks >= 50 && marks <= 59) {
-        return 'C';
-        
-    } else if (marks >= 40 && marks <= 49) {
-        return 'D';
-        
-    } else {
-        return 'E';
-    }
+// Define a function called 'marks' that calculates the grade based on the marks
+function marks (o) {
+if (o > 79) return "A"
+// If marks are greater than 79, return "A"
+else if (60 <= o && o<=79) return "B";
+ // If marks are between 60 and 79 (inclusive), return "B"
+else if (50 <= o && o <= 59) return "C";
+ // If marks are between 50 and 59 (inclusive), return "C"
+else if (40 <= o&& o <= 49) return "D";
+  // If marks are between 40 and 49 (inclusive), return "D"
+else if (40 > o) return "E"
+// If none of the above conditions are met, return "Please insert valid grade"
+else return "Please insert valid grade"
 }
-
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-readline.question('Enter student marks (0-100): ', (marks) => {
-    if (marks >= 0 && marks <= 100) {
-        const grade = generateStudentGrade(parseInt(marks));
-        console.log(`Grade: ${grade}`);
-    } else {
-        console.log('Invalid input. Marks should be between 0 and 100.');
-    }
-    readline.close();
-});
-
+// Call the 'marks' function with the entered marks and print the grade
+console.log ("Grade" + marks (enteredmarks)) 
